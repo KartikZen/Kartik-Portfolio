@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+  <title>Kartik Yadav | Portfolio</title>
+  <style>
+    /* ===== Global Reset ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ===== Navbar ===== */
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      position: relative;
+      font-weight: 500;
+    }
+
+    nav ul li a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0%;
+      height: 2px;
+      background: #00bcd4;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover::after,
+    nav ul li a.active::after {
+      width: 100%;
+    }
+
+    /* ===== Hero ===== */
+    #home {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .hero-content {
+      z-index: 1;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .typing {
+      color: #00bcd4;
+      font-weight: bold;
+    }
+
+    .hero-buttons {
+      margin-top: 1.5rem;
+    }
+
+    .hero-buttons a {
+      display: inline-block;
+      margin: 0 10px;
+      padding: 10px 20px;
+      border: 2px solid #00bcd4;
+      border-radius: 25px;
+      color: #00bcd4;
+      transition: 0.3s;
+    }
+
+    .hero-buttons a:hover {
+      background: #00bcd4;
+      color: #000;
+    }
+
+    /* ===== About ===== */
+    #about {
+      /* padding: 5rem 2rem; */
+      max-width: 1200px;
+      /* margin: auto; */
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      /* gap: 3rem; */
+      align-items: center;
+    }
+
+    #about img {
+      width: 60%;
+      height: auto;
+      border-radius: 15px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-left: 20px;
+    }
+
+    #about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #00bcd4;
+    }
+
+    #about p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    #about a {
+      display: inline-block;
+      padding: 10px 20px;
+      border: 2px solid #00bcd4;
+      border-radius: 25px;
+      color: #00bcd4;
+      transition: 0.3s;
+    }
+
+    #about a:hover {
+      background: #00bcd4;
+      color: #000;
+    }
+
+    /* ===== Sections Common ===== */
+    section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2.section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: #00bcd4;
+    }
+
+    /* ===== Skills ===== */
+    /* ===== Projects ===== */
+
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background: #111;
+      border: 1px solid #444;
+      border-radius: 10px;
+      padding: 20px;
+      width: 250px;
+      text-align: center;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .card:hover {
+      background: #222;
+      transform: translateY(-10px);
+      border-color: #1abc9c;
+      box-shadow: 0 8px 20px rgba(26, 188, 156, 0.3);
+    }
+
+    .card i {
+      font-size: 2rem;
+      color: cyan;
+      margin-bottom: 10px;
+    }
+
+
+    /* ===== Contact ===== */
+    .contact-container {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    form {
+      display: grid;
+      gap: 1rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 10px;
+      border: none;
+      border-radius: 25px;
+      background: #00bcd4;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #0097a7;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #111;
+      color: #888;
+    }
+
+    /* ===== Responsive ===== */
+    @media(max-width: 768px) {
+      #about {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      #about img {
+        max-width: 300px;
+        margin: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav>
+      <h2>Kartik</h2>
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="home">
+    <canvas id="particles"></canvas>
+    <div class="hero-content">
+      <h1>Hello, I'm <span class="typing"></span></h1>
+      <p>Frontend Developer | Coder | Designer</p>
+      <div class="hero-buttons">
+        <a href="#projects">View Projects</a>
+        <a href="#contact">Contact Me</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <img src="img1.png" alt="Kartik Profile">
+    <div>
+      <h2>About Me</h2>
+      <p>
+        I'm Kartik Yadav, a passionate frontend developer with a focus on creating interactive and modern web
+        experiences.
+        I love working with HTML, CSS, and JavaScript to bring ideas to life.
+      </p>
+      <a href="#">Download Resume</a>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2 class="section-title"">My Skills</h2>
+    <div class=" card-grid">
+      <div class="card" data-aos="zoom-in"><i class="fab fa-html5"></i>
+        <p>HTML</p>
+      </div>
+      <div class="card" data-aos="zoom-in"><i class="fab fa-css3-alt"></i>
+        <p>CSS</p>
+      </div>
+      <div class="card" data-aos="zoom-in"><i class="fab fa-js"></i>
+        <p>JavaScript</p>
+      </div>
+      <div class="card" data-aos="zoom-in"><i class="fab fa-react"></i>
+        <p>React</p>
+      </div>
+      </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="card-grid">
+      <div class="card" data-aos="fade-up"><i class="fas fa-laptop-code"></i>
+        <p>Portfolio Website</p>
+      </div>
+      <div class="card" data-aos="fade-up"><i class="fas fa-music"></i>
+        <p>Music App UI</p>
+      </div>
+      <div class="card" data-aos="fade-up"><i class="fas fa-blog"></i>
+        <p>Blog Template</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-container">
+     
+      <!-- <form action="https://formsubmit.co/ky340425@gmail.com" method="POST">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="ThankYou" value="https://thankyou34.netlify.app">
+
+          <input type="text" name="name" placeholder="Enter Your Name" required />
+          <input type="email" name="email" placeholder="Enter Your Email" required />
+          <input type="text" name="subject" placeholder="Enter Your Subject" required />
+          <textarea
+            name="message"
+            cols="40"
+            rows="10"
+            placeholder="Enter Your Message "
+          ></textarea>
+          <input type="submit" value="Submit" class="send"  />
+        </form> -->
+        <form action="https://formsubmit.co/8801abb487d9ba471ea29aa408b54ffa" method="POST">
+  <!-- Disable captcha (optional) -->
+  <input type="hidden" name="_captcha" value="false">
+
+  <!-- Redirect to your thankyou site -->
+  <input type="hidden" name="_next" value="https://thankyou34.netlify.app">
+
+  <!-- Form fields -->
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="email" name="email" placeholder="Your Email" required>
+  <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+  
+  <!-- Submit button -->
+  <button type="submit">Send Message</button>
+</form>
+
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Kartik Yadav. All rights reserved.</p>
+  </footer>
+
+  <script>
+    /* ===== Typing Animation ===== */
+    const textArray = ["Kartik Yadav", "a Frontend Developer", "a Coder", "a Designer"];
+    let typingElement = document.querySelector(".typing");
+    let arrayIndex = 0, charIndex = 0;
+
+    function typeEffect() {
+      if (charIndex < textArray[arrayIndex].length) {
+        typingElement.textContent += textArray[arrayIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(typeEffect, 150);
+      } else {
+        setTimeout(eraseEffect, 1500);
+      }
+    }
+    function eraseEffect() {
+      if (charIndex > 0) {
+        typingElement.textContent = textArray[arrayIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(eraseEffect, 100);
+      } else {
+        arrayIndex = (arrayIndex + 1) % textArray.length;
+        setTimeout(typeEffect, 200);
+      }
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      setTimeout(typeEffect, 500);
+    });
+
+    /* ===== Particles Background ===== */
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    let particlesArray;
+
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+
+    window.addEventListener("resize", () => {
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+      init();
+    });
+
+    class Particle {
+      constructor(x, y, size, dx, dy) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.dx = dx;
+        this.dy = dy;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+        ctx.fillStyle = "#00bcd4";
+        ctx.fill();
+      }
+      update() {
+        if (this.x + this.size > canvas.width || this.x - this.size < 0) this.dx = -this.dx;
+        if (this.y + this.size > canvas.height || this.y - this.size < 0) this.dy = -this.dy;
+        this.x += this.dx;
+        this.y += this.dy;
+        this.draw();
+      }
+    }
+
+    function init() {
+      particlesArray = [];
+      let numberOfParticles = 100;
+      for (let i = 0; i < numberOfParticles; i++) {
+        let size = 2;
+        let x = Math.random() * (canvas.width - size * 2);
+        let y = Math.random() * (canvas.height - size * 2);
+        let dx = (Math.random() - 0.5) * 1;
+        let dy = (Math.random() - 0.5) * 1;
+        particlesArray.push(new Particle(x, y, size, dx, dy));
+      }
+    }
+
+    function connect() {
+      for (let a = 0; a < particlesArray.length; a++) {
+        for (let b = a; b < particlesArray.length; b++) {
+          let dx = particlesArray[a].x - particlesArray[b].x;
+          let dy = particlesArray[a].y - particlesArray[b].y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 120) {
+            ctx.strokeStyle = "rgba(0,188,212,0.2)";
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+      }
+      connect();
+    }
+
+    init();
+    animate();
+  </script>
+</body>
+
+</html>
